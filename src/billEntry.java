@@ -17,6 +17,10 @@ public class billEntry {
 		return billValue;
 	}
 	
+	public void decreaseAmount() {
+		billAmount--;
+	}
+	
 	public String toString() {
 		return "value " + billValue + ";amount " + billAmount + " ";
 	}

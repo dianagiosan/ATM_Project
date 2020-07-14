@@ -25,6 +25,6 @@ public class ATMOutput {
 	}
 	
 	public String toString() {
-		return message + " Here is your money: " + bills;
+		return message + ". Here is your money: " + bills;
 	}
 }

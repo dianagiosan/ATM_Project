@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ATM {
-
+	
 	private List<billEntry> availableBills = new ArrayList<>();
 	
 	public ATM() {
@@ -15,12 +15,11 @@ public class ATM {
 	}
 	
 	
-	
 	public List<billEntry> getAvailableBills() {
 		return availableBills;
 	}
 	
-	public ATMOutput splitIntoBills(int cashToWithdraw){
+	public ATMOutput splitIntoBills(int cashToWithdraw) {
 		availableBills.sort((billEntry1, billEntry2) -> billEntry2.getBillValue() - billEntry1.getBillValue());
 		int currentBillIndex = 0;
 		int currentBillCounter;
@@ -57,8 +56,7 @@ public class ATM {
 		}
 		String message;
 		if (cashToWithdraw > 0) {
-			System.out.println("WTF");
-			message = "Not okay";
+			message = "Transaction denied";
 			returnBills.clear();
 			returnBills.add(new billEntry(0, 0));
 			try {
@@ -66,7 +64,7 @@ public class ATM {
 			} catch (NotEnoughCashLeftException e) {
 				e.printStackTrace();
 			}
-		} else message = "OK";
+		} else message = "Transaction approved";
 		return new ATMOutput(returnBills, message);
 	}
 	
