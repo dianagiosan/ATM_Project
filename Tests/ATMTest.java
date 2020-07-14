@@ -29,7 +29,7 @@ public class ATMTest {
 		expectedBills.add(new billEntry(50, 1));
 		expectedBills.add(new billEntry(1, 1));
 		ATMOutput actual = ATMTest.splitIntoBills(151);
-		ATMOutput expected = new ATMOutput(expectedBills, "OK");
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
 		assertEquals(expected, actual);
 		
 	}
@@ -41,7 +41,7 @@ public class ATMTest {
 		ATMOutput actual = ATMTest.splitIntoBills(103);
 		expectedBills.add(new billEntry(100, 1));
 		expectedBills.add(new billEntry(1, 3));
-		ATMOutput expected = new ATMOutput(expectedBills, "OK");
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
 		assertEquals(expected, actual);
 		
 	}
@@ -52,7 +52,7 @@ public class ATMTest {
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(50, 1));
 		ATMOutput actual = ATMTest.splitIntoBills(50);
-		ATMOutput expected = new ATMOutput(expectedBills, "OK");
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
 		assertEquals(expected, actual);
 		
 	}
@@ -65,7 +65,7 @@ public class ATMTest {
 		expectedBills.add(new billEntry(50, 50));
 		expectedBills.add(new billEntry(10, 1));
 		ATMOutput actual = ATMTest.splitIntoBills(7510);
-		ATMOutput expected = new ATMOutput(expectedBills, "OK");
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
 		assertEquals(expected, actual);
 		
 	}
@@ -77,18 +77,18 @@ public class ATMTest {
 		expectedBills.add(new billEntry(50, 1));
 		expectedBills.add(new billEntry(10, 1));
 		ATMOutput actual = ATMTest.splitIntoBills(60);
-		ATMOutput expected = new ATMOutput(expectedBills, "OK");
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
 		assertEquals(expected, actual);
 		
 	}
 	
-	@Test(expected = NotEnoughCashLeftException.class)
+	@Test
 	public void splitIntoBillsOverflow() {
 		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(0, 0));
 		ATMOutput actual = ATMTest.splitIntoBills(10000);
-		ATMOutput expected = new ATMOutput(expectedBills, "Not okay");
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction denied");
 		assertEquals(expected, actual);
 		
 		
@@ -101,12 +101,12 @@ public class ATMTest {
 		expectedBills.add(new billEntry(100, 50));
 		expectedBills.add(new billEntry(50, 50));
 		ATMOutput actual = ATMTest.splitIntoBills(7500);
-		ATMOutput expected = new ATMOutput(expectedBills, "OK");
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
 		assertEquals(expected, actual);
 		expectedBills.clear();
 		expectedBills.add(new billEntry(0, 0));
 		actual = ATMTest.splitIntoBills(7500);
-		expected = new ATMOutput(expectedBills, "Not okay");
+		expected = new ATMOutput(expectedBills, "Transaction denied");
 		assertEquals(expected, actual);
 		
 		
