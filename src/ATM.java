@@ -27,6 +27,9 @@ public class ATM {
 		int currentBillIndex = 0;
 		int currentBillCounter;
 		List<billEntry> returnBills = new ArrayList<>();
+		boolean critical100MessageSent = false;
+		boolean warning100MessageSent = false;
+		boolean warning50MessageSent = false;
 		while (cashToWithdraw > 0 && currentBillIndex < availableBills.size()) {
 			currentBillCounter = 0;
 			
@@ -34,6 +37,18 @@ public class ATM {
 				cashToWithdraw >= availableBills.get(currentBillIndex).getBillValue()) {
 				cashToWithdraw -= availableBills.get(currentBillIndex).getBillValue();
 				availableBills.get(currentBillIndex).decreaseAmount();
+				if (availableBills.get(0).getBillAmount() < 5 && !critical100MessageSent) {
+					MockMail.send("Number of 100 bills is CRITICAL.");
+					critical100MessageSent = true;
+				} else if (availableBills.get(0).getBillAmount() < 10 && !warning100MessageSent) {
+					MockMail.send("Warning. Number of 100 bills under 20%.");
+					warning100MessageSent = true;
+				}
+				if (availableBills.get(1).getBillAmount() <= 7 && !warning50MessageSent) {
+					
+					MockMail.send("Warning. Number of 50 bills is critical.");
+					warning50MessageSent = true;
+				}
 				currentBillCounter++;
 			}
 			
