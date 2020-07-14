@@ -94,6 +94,20 @@ public class ATMTest {
 	}
 	
 	@Test
+	public void splitIntoBills_99() {
+		ATM ATMTest = new ATM();
+		List<billEntry> expectedBills = new ArrayList<>();
+		expectedBills.add(new billEntry(50, 1));
+		expectedBills.add(new billEntry(10, 4));
+		expectedBills.add(new billEntry(5, 1));
+		expectedBills.add(new billEntry(1, 4));
+		ATMOutput actual = ATMTest.splitIntoBills(99);//
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test
 	public void splitIntoBillsOverflow() {
 		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
@@ -106,7 +120,7 @@ public class ATMTest {
 	}
 	
 	@Test
-	public void splitIntoBillsRepeatedly() {
+	public void splitIntoBillsRepeatedlyTest1() {
 		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 50));
@@ -122,4 +136,56 @@ public class ATMTest {
 		
 		
 	}
+	@Test
+	public void splitIntoBillsRepeatedlyTest2() {
+		ATM ATMTest = new ATM();
+		List<billEntry> expectedBills = new ArrayList<>();
+		expectedBills.add(new billEntry(100, 50));
+		expectedBills.add(new billEntry(50, 50));
+		ATMOutput actual = ATMTest.splitIntoBills(7500);
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
+		assertEquals(expected, actual);
+		expectedBills.clear();
+		expectedBills.add(new billEntry(10, 15));
+		actual = ATMTest.splitIntoBills(150);
+		expected = new ATMOutput(expectedBills, "Transaction approved");
+		assertEquals(expected, actual);
+		
+		
+	}
+	@Test
+	public void splitIntoBillsRepeatedlyTest3() {
+		ATM ATMTest = new ATM();
+		List <billEntry> newATMConfiguration = new ArrayList<>();
+		newATMConfiguration.add(new billEntry(100, 1));
+		newATMConfiguration.add(new billEntry(50, 1));
+		newATMConfiguration.add(new billEntry(10, 5));
+		newATMConfiguration.add(new billEntry(5, 9));
+		newATMConfiguration.add(new billEntry(1, 10));
+		ATMTest.changeInitialATMConfiguration(newATMConfiguration);
+		
+		List<billEntry> expectedBills = new ArrayList<>();
+		expectedBills.add(new billEntry(100, 1));
+		expectedBills.add(new billEntry(50, 1));
+		ATMOutput actual = ATMTest.splitIntoBills(150);
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
+		assertEquals(expected, actual);
+		
+		expectedBills.clear();
+		expectedBills.add(new billEntry(10, 5));
+		actual = ATMTest.splitIntoBills(50);
+		expected = new ATMOutput(expectedBills, "Transaction approved");
+		assertEquals(expected, actual);
+		
+		expectedBills.clear();
+		expectedBills.add(new billEntry(5, 9));
+		expectedBills.add(new billEntry(1, 5));
+		actual = ATMTest.splitIntoBills(50);
+		expected = new ATMOutput(expectedBills, "Transaction approved");
+		assertEquals(expected, actual);
+		
+		
+		
+	}
+	
 }
