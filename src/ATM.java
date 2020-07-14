@@ -14,7 +14,11 @@ public class ATM { //main class that models the ATM functionality
 		
 	}
 	
-	
+	public void changeInitialATMConfiguration(List<billEntry> newConfiguration) { //for testing purposes only
+		availableBills.clear();
+		availableBills.addAll(newConfiguration);
+		
+	}
 	public List<billEntry> getAvailableBills() {
 		return availableBills;
 	}
