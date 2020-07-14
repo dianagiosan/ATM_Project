@@ -2,13 +2,13 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class ATMTest {
 	ATM ATMTest = ATM.getInstance();
+	
 	@Test
 	public void getAvailableBills() {
 		
@@ -20,8 +20,9 @@ public class ATMTest {
 		expectedBills.add(new billEntry(1, 100));
 		assertArrayEquals(ATMTest.getAvailableBills().toArray(), expectedBills.toArray());
 	}
+	
 	@Test
-	public void splitIntoBills_151(){
+	public void splitIntoBills_151() {
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 1));
 		expectedBills.add(new billEntry(50, 1));
@@ -31,8 +32,9 @@ public class ATMTest {
 		assertEquals(expected, actual);
 		
 	}
+	
 	@Test
-	public void splitIntoBills_103(){
+	public void splitIntoBills_103() {
 		List<billEntry> expectedBills = new ArrayList<>();
 		ATMOutput actual = ATMTest.splitIntoBills(103);
 		expectedBills.add(new billEntry(100, 1));
@@ -41,8 +43,9 @@ public class ATMTest {
 		assertEquals(expected, actual);
 		
 	}
+	
 	@Test
-	public void splitIntoBills_50(){
+	public void splitIntoBills_50() {
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(50, 1));
 		ATMOutput actual = ATMTest.splitIntoBills(50);
@@ -50,8 +53,9 @@ public class ATMTest {
 		assertEquals(expected, actual);
 		
 	}
+	
 	@Test
-	public void splitIntoBills_7510(){
+	public void splitIntoBills_7510() {
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 50));
 		expectedBills.add(new billEntry(50, 50));
@@ -61,8 +65,9 @@ public class ATMTest {
 		assertEquals(expected, actual);
 		
 	}
+	
 	@Test
-	public void splitIntoBills_60(){
+	public void splitIntoBills_60() {
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(50, 1));
 		expectedBills.add(new billEntry(10, 1));
@@ -71,8 +76,9 @@ public class ATMTest {
 		assertEquals(expected, actual);
 		
 	}
+	
 	@Test
-	public void splitIntoBillsOverflow(){
+	public void splitIntoBillsOverflow() {
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(0, 0));
 		ATMOutput actual = ATMTest.splitIntoBills(10000);
@@ -81,8 +87,9 @@ public class ATMTest {
 		
 		
 	}
+	
 	@Test
-	public void splitIntoBillsRepeatedly(){
+	public void splitIntoBillsRepeatedly() {
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 50));
 		expectedBills.add(new billEntry(50, 50));
