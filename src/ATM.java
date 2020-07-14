@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class ATM {
 	private static ATM ATMinstance = new ATM();
@@ -24,7 +23,7 @@ public class ATM {
 	}
 	
 	public ATMOutput splitIntoBills(int cashToWithdraw) {
-		List <billEntry> returnBills = new ArrayList<>();
+		List<billEntry> returnBills = new ArrayList<>();
 		returnBills.add(new billEntry(0, 0));
 		return new ATMOutput(returnBills, "Not okay");
 	}
