@@ -1,11 +1,11 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class ATMOutput {
 	List<billEntry> bills;
 	String message;
-	public ATMOutput(List<billEntry> bills, String message){
+	
+	public ATMOutput(List<billEntry> bills, String message) {
 		this.bills = bills;
 		this.message = message;
 	}
@@ -23,6 +23,7 @@ public class ATMOutput {
 	public int hashCode() {
 		return Objects.hash(bills, message);
 	}
+	
 	public String toString() {
 		return message + " Here is your money: " + bills;
 	}
