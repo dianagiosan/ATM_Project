@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ATM {
@@ -29,21 +27,27 @@ public class ATM {
 		int currentBillIndex = 0;
 		int currentBillCounter;
 		List<billEntry> returnBills = new ArrayList<>();
-		while (cashToWithdraw > 0) {
+		while (cashToWithdraw > 0 && currentBillIndex < availableBills.size()) {
 			currentBillCounter = 0;
+			
 			while (availableBills.get(currentBillIndex).getBillAmount() > 0 &&
-			cashToWithdraw >= availableBills.get(currentBillIndex).getBillValue()){
+				cashToWithdraw >= availableBills.get(currentBillIndex).getBillValue()) {
 				cashToWithdraw -= availableBills.get(currentBillIndex).getBillValue();
 				availableBills.get(currentBillIndex).decreaseAmount();
 				currentBillCounter++;
-				
 			}
-			if(currentBillCounter > 0)
-			returnBills.add(new billEntry(availableBills.get(currentBillIndex).getBillValue(), currentBillCounter));
+			
+			if (currentBillCounter > 0)
+				returnBills.add(new billEntry(availableBills.get(currentBillIndex).getBillValue(), currentBillCounter));
 			currentBillIndex++;
 			
 		}
-		String message = "OK";
+		String message;
+		if (cashToWithdraw > 0) {
+			message = "Not okay";
+			returnBills.clear();
+			returnBills.add(new billEntry(0, 0));
+		} else message = "OK";
 		return new ATMOutput(returnBills, message);
 	}
 	
