@@ -1,7 +1,8 @@
 import java.util.List;
 import java.util.Objects;
 
-public class ATMOutput {
+public class ATMOutput { //class that models the output the ATM provides the user with,
+	//consisting of the bills and their respective amount, as well as a specific success/error message
 	List<billEntry> bills;
 	String message;
 	

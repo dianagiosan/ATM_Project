@@ -83,6 +83,17 @@ public class ATMTest {
 	}
 	
 	@Test
+	public void splitIntoBills_4() {
+		ATM ATMTest = new ATM();
+		List<billEntry> expectedBills = new ArrayList<>();
+		expectedBills.add(new billEntry(1, 4));
+		ATMOutput actual = ATMTest.splitIntoBills(4);
+		ATMOutput expected = new ATMOutput(expectedBills, "Transaction approved");
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test
 	public void splitIntoBillsOverflow() {
 		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();

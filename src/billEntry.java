@@ -1,6 +1,7 @@
 import java.util.Objects;
 
-public class billEntry {
+public class billEntry { //this class models a bill entry, which is basically a pair between the bill and
+	//the amount of such bills that are available in the ATM
 	private int billValue;
 	private int billAmount;
 	
@@ -22,7 +23,7 @@ public class billEntry {
 	}
 	
 	public String toString() {
-		return "value " + billValue + ";amount " + billAmount + " ";
+		return "value: " + billValue + " -> amount: " + billAmount + " ";
 	}
 	
 	@Override
