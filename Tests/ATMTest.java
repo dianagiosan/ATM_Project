@@ -7,11 +7,11 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class ATMTest {
-	ATM ATMTest = ATM.getInstance();
+	
 	
 	@Test
 	public void getAvailableBills() {
-		
+		ATM ATMTest = new ATM();
 		ArrayList<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 50));
 		expectedBills.add(new billEntry(50, 50));
@@ -23,6 +23,7 @@ public class ATMTest {
 	
 	@Test
 	public void splitIntoBills_151() {
+		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 1));
 		expectedBills.add(new billEntry(50, 1));
@@ -35,6 +36,7 @@ public class ATMTest {
 	
 	@Test
 	public void splitIntoBills_103() {
+		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		ATMOutput actual = ATMTest.splitIntoBills(103);
 		expectedBills.add(new billEntry(100, 1));
@@ -46,6 +48,7 @@ public class ATMTest {
 	
 	@Test
 	public void splitIntoBills_50() {
+		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(50, 1));
 		ATMOutput actual = ATMTest.splitIntoBills(50);
@@ -56,6 +59,7 @@ public class ATMTest {
 	
 	@Test
 	public void splitIntoBills_7510() {
+		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 50));
 		expectedBills.add(new billEntry(50, 50));
@@ -68,6 +72,7 @@ public class ATMTest {
 	
 	@Test
 	public void splitIntoBills_60() {
+		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(50, 1));
 		expectedBills.add(new billEntry(10, 1));
@@ -77,8 +82,9 @@ public class ATMTest {
 		
 	}
 	
-	@Test
+	@Test(expected = NotEnoughCashLeftException.class)
 	public void splitIntoBillsOverflow() {
+		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(0, 0));
 		ATMOutput actual = ATMTest.splitIntoBills(10000);
@@ -90,6 +96,7 @@ public class ATMTest {
 	
 	@Test
 	public void splitIntoBillsRepeatedly() {
+		ATM ATMTest = new ATM();
 		List<billEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new billEntry(100, 50));
 		expectedBills.add(new billEntry(50, 50));
