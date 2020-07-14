@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ATM {
-	private static ATM ATMinstance = new ATM();
+
 	private List<billEntry> availableBills = new ArrayList<>();
 	
-	private ATM() {
+	public ATM() {
 		availableBills.add(new billEntry(100, 50));
 		availableBills.add(new billEntry(50, 50));
 		availableBills.add(new billEntry(10, 100));
@@ -14,15 +14,13 @@ public class ATM {
 		
 	}
 	
-	public static ATM getInstance() {
-		return ATMinstance;
-	}
+	
 	
 	public List<billEntry> getAvailableBills() {
 		return availableBills;
 	}
 	
-	public ATMOutput splitIntoBills(int cashToWithdraw) {
+	public ATMOutput splitIntoBills(int cashToWithdraw){
 		availableBills.sort((billEntry1, billEntry2) -> billEntry2.getBillValue() - billEntry1.getBillValue());
 		int currentBillIndex = 0;
 		int currentBillCounter;
@@ -46,7 +44,7 @@ public class ATM {
 				}
 				if (availableBills.get(1).getBillAmount() <= 7 && !warning50MessageSent) {
 					
-					MockMail.send("Warning. Number of 50 bills is critical.");
+					MockMail.send("Warning. Number of 50 bills is under 15%.");
 					warning50MessageSent = true;
 				}
 				currentBillCounter++;
@@ -59,9 +57,15 @@ public class ATM {
 		}
 		String message;
 		if (cashToWithdraw > 0) {
+			System.out.println("WTF");
 			message = "Not okay";
 			returnBills.clear();
 			returnBills.add(new billEntry(0, 0));
+			try {
+				throw new NotEnoughCashLeftException();
+			} catch (NotEnoughCashLeftException e) {
+				e.printStackTrace();
+			}
 		} else message = "OK";
 		return new ATMOutput(returnBills, message);
 	}
