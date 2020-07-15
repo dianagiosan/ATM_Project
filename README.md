@@ -3,6 +3,7 @@
 This project simulates an ATM functionality. Running the ATMDriver, the user can insert the sum of cash they would like 
 to withdraw, and the program simply divides the sum into as few bills as possible, keeping track of the available bills
 that are left in the ATM.
+
 ![](https://github.com/dianagiosan/ATM_Project/blob/master/readme_images/1.png)
 
 If the user tries to input anything other than an integer, a message reminds them to enter a valid
