@@ -24,6 +24,7 @@ public class ATM { //main class that models the ATM functionality
 	}
 	
 	public ATMOutput splitIntoBills(int cashToWithdraw) {
+		
 		availableBills.sort((billEntry1, billEntry2) -> billEntry2.getBillValue() - billEntry1.getBillValue());
 		//sort the list of available bills descendingly by their value
 		int currentBillIndex = 0; //the current bill in the list that we try to include in the output
@@ -32,6 +33,24 @@ public class ATM { //main class that models the ATM functionality
 		boolean critical100MessageSent = false; //in order to avoid sending the warning mail twice for the same event
 		boolean warning100MessageSent = false;
 		boolean warning50MessageSent = false;
+		String message;
+		boolean OKtoContinue = false;
+		for (billEntry entry : availableBills) {
+			if (entry.getBillAmount() != 0) {
+				OKtoContinue = true;
+				break;
+			}
+		}
+		if (!OKtoContinue)
+			try {
+				throw new NotEnoughCashLeftException(); //throw exception
+			} catch (NotEnoughCashLeftException e) {
+				e.printStackTrace();
+				message = "Transaction denied";
+				returnBills.add(new billEntry(0, 0)); //no money outputted
+				return new ATMOutput(returnBills, message);
+			}
+		
 		while (cashToWithdraw > 0 && currentBillIndex < availableBills.size()) { //we still have to withdraw cash
 			currentBillCounter = 0;
 			
@@ -59,14 +78,14 @@ public class ATM { //main class that models the ATM functionality
 			currentBillIndex++;
 			
 		}
-		String message;
+		
 		if (cashToWithdraw > 0) { //if the cash could not be withdrawn, it's because there's not enough money left
 			message = "Transaction denied";
 			returnBills.clear();
 			returnBills.add(new billEntry(0, 0)); //no money outputted
 			try {
-				throw new NotEnoughCashLeftException(); //throw exception
-			} catch (NotEnoughCashLeftException e) {
+				throw new TransactionNotPossibleException(); //throw exception
+			} catch (TransactionNotPossibleException e) {
 				e.printStackTrace();
 			}
 		} else message = "Transaction approved";
