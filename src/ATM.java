@@ -46,7 +46,7 @@ public class ATM { //main class that models the ATM functionality
 			try {
 				throw new NotEnoughCashLeftException(); //throw exception, there's no more cash in the ATM
 			} catch (NotEnoughCashLeftException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 				message = "Transaction denied";
 				returnBills.add(new billEntry(0, 0)); //no money outputted
 				return new ATMOutput(returnBills, message);
@@ -81,7 +81,7 @@ public class ATM { //main class that models the ATM functionality
 			try {
 				throw new TransactionNotPossibleException(); //throw exception
 			} catch (TransactionNotPossibleException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		} else {
 			message = "Transaction approved"; //if the transaction was successful, update the new bill configuration in the ATM
